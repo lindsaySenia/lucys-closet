@@ -1,7 +1,10 @@
 # Lucy's Closet
 ## Summary
 Lucy's closet is an app for parents and caretakers to keep track of their children(s) clothes! 
-It's easy to lose track of clothing items that have been gifted or bought ahead of time. It's also hard to remember what you need to match wehn you're out shopping. This app solves those problems!
+
+It's easy to lose track of clothing items that have been gifted or bought ahead of time. 
+It's also hard to remember what you need to match when you're out shopping. This app solves those problems!
+
 ## MVP
 ### Pages
 - Landing / Login / Register Page 

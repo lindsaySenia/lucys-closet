@@ -16,6 +16,15 @@ public class Item {
     public Item() {
     }
 
+    public Item(ItemDto itemDto) {
+        this.name = itemDto.getName();
+        this.brand = itemDto.getBrand();
+        this.type = itemDto.getType();
+        this.size = itemDto.getSize();
+        this.color = itemDto.getColor();
+        this.imageUrl = itemDto.getImageUrl();
+    }
+
     @Id
     @GeneratedValue
     private Long id;
@@ -24,6 +33,7 @@ public class Item {
     private String type;
     private String size;
     private String color;
+    private String imageUrl;
 
 
     @OneToMany(mappedBy = "item")
@@ -31,16 +41,17 @@ public class Item {
 
     @ManyToMany(mappedBy = "items", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @EqualsAndHashCode.Exclude
-    private Set<Closet> closetSet = new HashSet<>();
+    private Set<Closet> closetSet;
+//     = new HashSet<>();
 
-    public Item(ItemDto itemDto) {
-        this.name = itemDto.getName();
-        this.brand = itemDto.getBrand();
-        this.type = itemDto.getType();
-        this.size = itemDto.getSize();
-        this.color = itemDto.getColor();
-        this.images = itemDto.getImages();
-        this.closetSet = itemDto.getClosetSet();
-    }
+//    public Item(ItemDto itemDto) {
+//        this.name = itemDto.getName();
+//        this.brand = itemDto.getBrand();
+//        this.type = itemDto.getType();
+//        this.size = itemDto.getSize();
+//        this.color = itemDto.getColor();
+//        this.images = itemDto.getImages();
+//        this.closetSet = itemDto.getClosetSet();
+//    }
 
 }

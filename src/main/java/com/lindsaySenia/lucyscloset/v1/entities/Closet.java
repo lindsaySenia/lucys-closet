@@ -24,17 +24,18 @@ public class Closet {
             inverseJoinColumns = @JoinColumn(name = "item_id")
     )
     @EqualsAndHashCode.Exclude
-    private Set<Item> items = new HashSet<>();
+    private Set<Item> items;
+//     = new HashSet<>();
 
-    public Closet(ClosetDto closetDto) {
-        this.name = closetDto.getName();
-        this.description = closetDto.getDescription();
-        this.items = closetDto.getItems();
-    }
-
-    public Closet(){
-
-    }
+//    public Closet(ClosetDto closetDto) {
+//        this.name = closetDto.getName();
+//        this.description = closetDto.getDescription();
+//        this.items = closetDto.getItems();
+//    }
+//
+//    public Closet(){
+//
+//    }
 }
 //Not finished?
 

@@ -20,8 +20,9 @@ public class ItemDto {
     private String type;
     private String size;
     private String color;
-    private List<Image> images;
-    private Set<Closet> closetSet;
+    private String imageUrl;
+//    private List<Image> images;
+//    private Set<Closet> closetSet;
 
 
     public ItemDto(Item item) {
@@ -31,8 +32,9 @@ public class ItemDto {
         this.type = item.getType();
         this.size = item.getSize();
         this.color = item.getColor();
-        this.images = item.getImages();
-        this.closetSet = item.getClosetSet();
+        this.imageUrl = item.getImageUrl();
+//        this.images = item.getImages();
+//        this.closetSet = new HashSet<>();
     }
 
 }

@@ -1,58 +1,44 @@
-/// change to Rest Controllers
-
 package com.lindsaySenia.lucyscloset.v1.controllers;
 
 import com.lindsaySenia.lucyscloset.v1.model.ItemDto;
 import com.lindsaySenia.lucyscloset.v1.services.ItemService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
 
-@Controller
+@RestController
+@RequestMapping("/api/v1")
 @AllArgsConstructor(onConstructor_={@Autowired})
 public class ItemController {
 
-    public final ItemService itemService;
+    private final ItemService itemService;
 
     @GetMapping("/items")
-    public String getAllItems(Model model) {
-        clearModel(model);
-        return "items";
+    public List<ItemDto> getAllItems() {
+        return itemService.getAllItems();
     }
-//@
+
+    @GetMapping("/items/{id}")
+    public Optional<ItemDto> getItemById(@PathVariable Long id) {
+        return itemService.findItemById(id);
+    }
+
+    @PutMapping("/items/{id}")
+    public Optional<ItemDto> updateItem(@PathVariable Long id, @RequestBody ItemDto itemDto) {
+        return itemService.updateItem(itemDto);
+    }
+
     @PostMapping("/items")
-    public String createNewItem(@ModelAttribute ItemDto newItem, Model model) {
-        itemService.createItem(newItem);
-        clearModel(model);
-        return "items";
+    public ItemDto createItem(@RequestBody ItemDto itemDto) {
+        return itemService.createItem(itemDto);
     }
 
-    @GetMapping("/items/delete/{id}")
-    public String deleteItem(@PathVariable Long id, Model model) {
+    @DeleteMapping("/items/{id}")
+    public Boolean deleteItem(@PathVariable Long id){
         itemService.deleteItemById(id);
-        clearModel(model);
-        return "items";
+        return Boolean.TRUE;
     }
-
-    @PostMapping("/items/{id}")
-    public String updateItem(@ModelAttribute ItemDto updatedItem, Model model) {
-        itemService.updateItem(updatedItem);
-        clearModel(model);
-        return "items";
-    }
-
-    private void clearModel (Model model) {
-        model.addAttribute("items", itemService.getAllItems());
-        model.addAttribute("newItem", new ItemDto());
-        model.addAttribute("updatedItem", new ItemDto());
-    }
-
 }
-
-//when frontend asks for items give it the items (create html for each))

@@ -33,13 +33,14 @@ public class ItemServiceImpl implements ItemService {
         item.setType(itemDto.getType());
         item.setSize(itemDto.getSize());
         item.setColor(itemDto.getColor());
-        return new ItemDto(itemRepository.save(item));
+        item.setImageUrl(itemDto.getImageUrl());
+        itemRepository.save(item);
+        return new ItemDto(item);
     }
 
     @Override
     public void deleteItemById(Long id) {
         itemRepository.deleteById(id);
-        return;
     }
 
     @Override
@@ -52,10 +53,22 @@ public class ItemServiceImpl implements ItemService {
             item.setType(itemDto.getType());
             item.setSize(itemDto.getSize());
             item.setColor(itemDto.getColor());
-            return Optional.of(new ItemDto(itemRepository.save(item)));
+            item.setImageUrl(itemDto.getImageUrl());
+            itemRepository.save(item);
+            return Optional.of(new ItemDto(item));
         }
         return Optional.empty();
     }
+
+    @Override
+    public Optional<ItemDto> findItemById(Long id) {
+        return itemRepository.findById(id).map(ItemDto::new);
+    }
+
+//    @Override
+//    public Optional<ItemDto> findItemByName(String itemName) {
+//        return itemRepository.findAll().contains(itemName).map(ItemDto::new);
+//    }
 }
 //optional - something might be null/not found
 //may or may have the id that is passed in ... if not returns empty optional

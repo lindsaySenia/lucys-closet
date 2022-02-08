@@ -20,12 +20,12 @@ public class Image {
     @ManyToOne
     private Item item;
 
-    public Image(ImageDto imageDto) {
-        this.url = imageDto.getUrl();
-        this.altTxt = imageDto.getAltTxt();
-        this.item = imageDto.getItem();
-    }
-
-    public Image() {
-    }
+//    public Image(ImageDto imageDto) {
+//        this.url = imageDto.getUrl();
+//        this.altTxt = imageDto.getAltTxt();
+//        this.item = imageDto.getItem();
+//    }
+//
+//    public Image() {
+//    }
 }

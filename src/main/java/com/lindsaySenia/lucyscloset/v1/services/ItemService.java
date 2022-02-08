@@ -14,6 +14,10 @@ public interface ItemService {
 
     Optional<ItemDto> updateItem(ItemDto item);
 
+    Optional<ItemDto> findItemById(Long id);
+
+//    Optional<ItemDto> findItemByName(String itemName);
+
 }
 
 
